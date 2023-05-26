@@ -1,10 +1,4 @@
 package searchengine.dto;
 
-import lombok.Data;
-
-@Data
-public class PageDto {
-    private String url;
-    private String content;
-    private int code;
+public record PageDto(String url, String content, int code) {
 }

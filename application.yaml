@@ -9,15 +9,28 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
-        ddl-auto: update
-        show-sql: true
+    hibernate:
+      ddl-auto: update
+      show-sql: true
+  mvc:
+    path match:
+      matching-strategy: ant_path_matcher
 indexing-settings:
   sites:
-    - url: https://www.lenta.ru
-      name: Лента.ру
     - url: https://www.skillbox.ru
       name: Skillbox
-    - url: https://www.playback.ru
-      name: PlayBack.Ru
+#    - url: https://www.lenta.ru
+#      name: Лента.ру
+#    - url: https://www.playback.ru
+#      name: PlayBack.Ru
   userAgent: Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6
   referrer: http://www.google.com
+search:
+  engine:
+    db:
+      url: ${spring.datasource.url}
+#      указать необходимый url
+      username: ${spring.datasource.username}
+#      указать имя базы данных
+      password: ${spring.datasource.password}
+#      указать пароль бызы данных
