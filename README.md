@@ -17,7 +17,7 @@
 ***
 
 ## Stack:
-Java version 19, Spring Boot version 2.7.5, Maven, Hibernate, Swagger Api, Lombok, JSOUP, Slf4j, MySQL, Morphology Library, junit.
+Java version 19, Spring Boot version 2.7.5, Maven, Hibernate, Swagger Api, Lombok, JSOUP, Slf4j, MySQL, Morphology Library, junit, PostgreSQL.
 
 ***
 
@@ -40,7 +40,7 @@ Java version 19, Spring Boot version 2.7.5, Maven, Hibernate, Swagger Api, Lombo
 * Для того, чтобы запустить проект локально вам необходимы JDK 16, система контроля версий git, сборщик проектов maven.
 Клонировать проект можно через git bash:
 > git clone https://github.com/IvanBely/SkillboxDiplom_SearchEngine.git
-* Необходимо создать пустую базу данных search_engine
+* Необходимо создать пустую базу данных search_engine (mysql)
 ``` roomsql
 create database search_engine;
  ```
@@ -48,16 +48,29 @@ create database search_engine;
 
 Часть файла:
  ``` yaml
-search:
-engine:
-db:
-url: ${spring.datasource.url}
-#      указать необходимый url
-      username: ${spring.datasource.username}
+spring:
+  datasource:
+    username: root
 #      указать имя базы данных
-      password: ${spring.datasource.password}
+    password: root
 #      указать пароль бызы данных
+    url: jdbc:mysql://localhost:3306/search_engine2?useSSL=false&requireSSL=false&allowPublicKeyRetrieval=true
+#      указать необходимый url
+indexing-settings:
+  sites:
+      - url: https://playback.ru
+#      индексируемый сайт
+        name: PlayBack
+#      имя
+
 ``` 
-* При запуске приложении необходимо авторизоваться на главной странице (Spring Security identification)<br>
-> user name: admin <br>
-  password: admin
+* Также необходимо настроить систему управления базами данных (PostgreSQL) и также изменить такие параметры, как пароль и логин и url к подключению базы данных
+ ``` properties
+server.port=8080
+spring.jpa.hibernate.ddl-auto=update
+spring.datasource.url=jdbc:postgresql://${DB_HOST:localhost}:5432/search_engine
+spring.datasource.username=postgres
+spring.datasource.password=postgres
+```
+## Как осуществляется поиск
+После запуска проекта, по адресу http://localhost:8080/ станет доступен веб-интерфейс. Он представляет собой одну веб-страницу с тремя вкладками:
