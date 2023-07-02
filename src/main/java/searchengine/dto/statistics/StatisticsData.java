@@ -1,7 +1,11 @@
 package searchengine.dto.statistics;
 
+import lombok.Data;
+
 import java.util.List;
 
-public record StatisticsData(TotalStatistics total,List<DetailedStatisticsItem> detailed) {
-
+@Data
+public class StatisticsData {
+    private TotalStatistics total;
+    private List<DetailedStatisticsItem> detailed;
 }

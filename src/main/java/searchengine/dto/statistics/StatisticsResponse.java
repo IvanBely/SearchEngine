@@ -1,6 +1,9 @@
 package searchengine.dto.statistics;
 
+import lombok.Data;
 
-public record StatisticsResponse(boolean result, StatisticsData statistics) {
-
+@Data
+public class StatisticsResponse {
+    private boolean result;
+    private StatisticsData statistics;
 }
