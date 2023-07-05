@@ -7,7 +7,7 @@ import searchengine.model.repositories.RepositoryIndex;
 import searchengine.model.repositories.RepositoryLemma;
 import searchengine.model.repositories.RepositoryPage;
 import searchengine.model.repositories.RepositorySite;
-import searchengine.services.NetworkService;
+import searchengine.util.NetworkConnection;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -19,14 +19,14 @@ public class StartExecutor implements Runnable {
     private final EntitySite entitySite;
     private final RepositoryPage repositoryPage;
     private static ForkJoinPool fjp;
-    private final NetworkService network;
+    private final NetworkConnection network;
     private final RepositorySite repositorySite;
     private final RepositoryIndex repositoryIndex;
     private final RepositoryLemma repositoryLemma;
 
 
     public StartExecutor(EntitySite entitySite, RepositoryPage repositoryPage,
-                         NetworkService network, RepositorySite repositorySite,
+                         NetworkConnection network, RepositorySite repositorySite,
                          RepositoryLemma repositoryLemma, RepositoryIndex repositoryIndex) {
         this.entitySite = entitySite;
         this.repositoryPage = repositoryPage;

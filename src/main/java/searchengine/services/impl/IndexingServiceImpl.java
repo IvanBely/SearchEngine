@@ -18,7 +18,7 @@ import searchengine.model.repositories.RepositoryLemma;
 import searchengine.model.repositories.RepositoryPage;
 import searchengine.model.repositories.RepositorySite;
 import searchengine.services.IndexingService;
-import searchengine.services.NetworkService;
+import searchengine.util.NetworkConnection;
 import searchengine.util.ExecutorHtml;
 import searchengine.util.StartExecutor;
 import searchengine.util.morphology.StartLemmaFind;
@@ -43,7 +43,7 @@ public class IndexingServiceImpl implements IndexingService {
     private final RepositoryIndex repositoryIndex;
     private final RepositorySite repositorySite;
     private final RepositoryPage repositoryPage;
-    private final NetworkService network;
+    private final NetworkConnection network;
     private final Pattern pattern = Pattern.compile("^(https?://)?([\\w-]{1,32}\\.[\\w-]{1,32})[^\\s@]*$");
 
 

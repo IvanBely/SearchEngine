@@ -11,7 +11,6 @@ import searchengine.model.repositories.RepositoryIndex;
 import searchengine.model.repositories.RepositoryLemma;
 import searchengine.model.repositories.RepositoryPage;
 import searchengine.model.repositories.RepositorySite;
-import searchengine.services.NetworkService;
 import searchengine.util.morphology.StartLemmaFind;
 
 import java.io.IOException;
@@ -29,7 +28,7 @@ public class ExecutorHtml extends RecursiveAction {
     private final RepositoryIndex repositoryIndex;
     private final RepositoryLemma repositoryLemma;
     private static Pattern patternUrl;
-    private static NetworkService network;
+    private static NetworkConnection network;
     public static volatile boolean stop = false;
     private final static Set<String> setAbsUrls = ConcurrentHashMap.newKeySet();
     private final ExecutorService executorService;
@@ -47,7 +46,7 @@ public class ExecutorHtml extends RecursiveAction {
 
     }
 
-    public ExecutorHtml(EntitySite entitySite, String url, RepositoryPage repositoryPage, NetworkService network,
+    public ExecutorHtml(EntitySite entitySite, String url, RepositoryPage repositoryPage, NetworkConnection network,
                         RepositorySite repositorySite, RepositoryIndex repositoryIndex, RepositoryLemma repositoryLemma) throws IOException {
         this.repositorySite = repositorySite;
         this.entitySite = entitySite;
